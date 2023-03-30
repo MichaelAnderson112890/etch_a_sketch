@@ -3,16 +3,41 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+    background-color: lightgrey;
+}
+
+#sketchpad {
+    border-style: solid;
 }
 
 .column {
-    border-style: solid;
     display: flex;
+    border-style: none;
 }
 
 .row {
-    border-style: solid;
-    border: 4 4;
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-style: none;
+    transition: background-color 0.15s;
+}
+
+.row:hover {
+    background-color: black;
+    
+}
+
+#board {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 56px;
+}
+
+#reset, #size {
+    border-radius: 16px;
+    font-size: 24px;
+    padding: 8px;
+    background-color: beige;
 }
