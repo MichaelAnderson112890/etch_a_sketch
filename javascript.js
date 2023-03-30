@@ -1,8 +1,21 @@
 let size = 10;
 let mouseDown = 0;
+gridSize = 500;
 
 document.body.onmousedown = function () {++mouseDown;}
 document.body.onmouseup = function () {--mouseDown;}
+
+
+createSquare(size);
+const resetButton = document.getElementById('reset');
+resetButton.addEventListener('click', () => {
+    reset(size);
+});
+const sizeButton = document.getElementById('size');
+sizeButton.addEventListener('click', () => {
+    changeSize();
+});
+
 function createSquare(size) {
     const board = document.querySelector("#sketchpad");
     for (let i = 0; i < size; i++){
@@ -11,7 +24,12 @@ function createSquare(size) {
         for (let j = 0; j < size; j++) {
             const row = document.createElement('button');
             row.setAttribute('class','row');
+            row.style.width = gridSize/size + 'px';
+            row.style.height = gridSize/size + 'px';
             row.classList.add('content')
+            row.addEventListener('click', () => {
+                row.style.backgroundColor = 'black';
+            });
             row.addEventListener('mouseover', () => {
                 if (mouseDown === 1){
                     row.style.backgroundColor = 'black';
@@ -36,27 +54,16 @@ function reset(size) {
 }
 
 function changeSize() {
-    newSize = prompt('What size would you like the sketch pad to be?');
-    console.log(newSize);
-    size = newSize;
+    let check = 0;
+    while (check === 0){
+        newSize = prompt('What size would you like the sketch pad to be? (1 - 40)');
+        if (newSize < 1 || newSize > 40){
+            alert("Please choose a valid option");
+        } else {
+            size = newSize;
+            check = 1;
+        }
+    }
     reset(size)
 }
-createSquare(size);
-const resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', () => {
-    reset(size);
-});
-const sizeButton = document.getElementById('size');
-sizeButton.addEventListener('click', () => {
-    changeSize();
-});
 
-
-/*
-.board {
-    width: 50px;
-    height: 50px;
-    border: 2px;
-    border-style: solid;
-}
-*/
